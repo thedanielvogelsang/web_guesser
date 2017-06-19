@@ -5,22 +5,22 @@ SECRET_NUMBER = rand(101)
 
 get '/' do
   guess = params[:guess].to_i if params[:guess]
-  message = check_guess(guess)
-  erb :index, :locals => {:number => SECRET_NUMBER, :message => message}
+  message, css_color = check_guess(guess)
+  erb :index, :locals => {:number => SECRET_NUMBER, :message => message, :css_color => css_color}
 end
 
 def check_guess(guess)
   case
   when guess == SECRET_NUMBER
-    "You got it right!\nThe Secret number is #{SECRET_NUMBER}"
+    ["You got it right!\nThe Secret number is #{SECRET_NUMBER}", "green"]
   when guess > SECRET_NUMBER + 5
-    "Way too high!"
+    ["Way too high!", "#E74C3C"]
   when guess > SECRET_NUMBER
-    "Too high"
+    ["Too high", "#EC7063"]
   when guess < SECRET_NUMBER - 5
-    "Way too low!"
+    ["Way too low!", "#E74C3C"]
   when guess < SECRET_NUMBER
-    "Too low"
+    ["Too low", "#EC7063"]
   end
 end
 
