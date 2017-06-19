@@ -8,6 +8,10 @@
     Secret Number Guesser
   </head>
   <body>
+    <% if cheat == "true"%>
+      <p>Cheat mode activated! Secret number is <%=number%>. </p>
+    <% end %>
+    <p>Can you guess the secret number? You have <%= counter %> guesses remaining!</p>
     <form>
       <input type='text' name='guess' />
       <input type='submit' value='Guess!' />
