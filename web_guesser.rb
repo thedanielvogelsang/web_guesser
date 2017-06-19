@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 SECRET_NUMBER = rand(101)
-@@counter = 6
+@@counter = 5
 @@game_over = false
 
 get '/' do
@@ -16,7 +16,7 @@ get '/' do
   elsif @@game_over
     SECRET_NUMBER = rand(101)
     @@game_over = false
-    @@counter = 6
+    @@counter = 5
   else
     @@counter -= 1
   end
@@ -27,7 +27,7 @@ def check_guess(guess)
   case
   when guess == SECRET_NUMBER
     @@game_over = true
-    ["You got it right!\nThe Secret number is #{SECRET_NUMBER}. Let's play again!", "green"]
+    ["You got it right!\nThe Secret number was #{SECRET_NUMBER}. Let's play again!", "green"]
   when guess > SECRET_NUMBER + 5
     ["Way too high!", "#E74C3C"]
   when guess > SECRET_NUMBER
